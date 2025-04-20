@@ -1,49 +1,26 @@
-#include "chacha.h"
-#include "cipher.h"
-//#include <openssl/cipher.h>
+#include "argon2.h"
 #include <stdio.h>
 #include <string.h>
 
-int main() {
-    // Define your key (256-bit) and nonce (96-bit)
-    uint8_t key[32] = { "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", 
-        "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", 
-        "a", "a", "a", "a", "a", "a", "a" };
-    uint8_t nonce[12] = { "a", "a", "a", "a", "a", "a", "a", "a", "a", "a",
-        "a", "a"  };
-    uint32_t counter = 1;
+#define HASHLEN 32
+#define SALTLEN 16
+#define PWD "password"
 
-    // Your data to encrypt/decrypt
-    uint8_t plaintext[] = "Hello, ChaCha20!";
-    size_t plaintext_len = sizeof(plaintext);
-    uint8_t ciphertext[plaintext_len];
-    uint8_t tag[16]; // Poly1305 tag
+int main(void)
+{
+    uint8_t hash[HASHLEN];
 
-    // Initialize the ChaCha20 context
-    EVP_CIPHER_CTX *ctx = EVP_CIPHER_CTX_new();
-    EVP_EncryptInit_ex(ctx, EVP_chacha20_poly1305(), NULL, key, nonce);
+    uint8_t salt[SALTLEN];
+    memset( salt, 0x00, SALTLEN );
 
-    // Encrypt the data
-    int len;
-    EVP_EncryptUpdate(ctx, ciphertext, &len, plaintext, plaintext_len);
-    EVP_EncryptFinal_ex(ctx, ciphertext + len, &len);
+    uint8_t *pwd = (uint8_t *)strdup(PWD);
+    uint32_t pwdlen = strlen((char *)pwd);
 
-    // Get the authentication tag
-    EVP_CIPHER_CTX_ctrl(ctx, EVP_CTRL_AEAD_GET_TAG, 16, tag);
+    uint32_t t_cost = 2;            // 2-pass computation
+    uint32_t m_cost = (1<<16);      // 64 mebibytes memory usage
+    uint32_t parallelism = 1;       // number of threads and lanes
 
-    // Print the result
-    printf("Ciphertext: ");
-    for (size_t i = 0; i < plaintext_len; i++) {
-        printf("%02x ", ciphertext[i]);
-    }
-    printf("\nTag: ");
-    for (size_t i = 0; i < 16; i++) {
-        printf("%02x ", tag[i]);
-    }
-    printf("\n");
-
-    // Clean up
-    EVP_CIPHER_CTX_free(ctx);
-
-    return 0;
+    // high-level API
+    argon2i_hash_raw(t_cost, m_cost, parallelism, pwd, pwdlen, salt, SALTLEN, hash, HASHLEN);
+    printf("%s", hash);
 }
