@@ -12,8 +12,8 @@ int main(void)
     uint8_t hash1[HASHLEN];
     uint8_t hash2[HASHLEN];
 
-    uint8_t salt[SALTLEN];
-    memset( salt, 0x00, SALTLEN );
+    uint8_t salt[SALTLEN] = "AAAAAAAAAAAAAAAA";
+    //memset( salt, 0x41, SALTLEN );
 
     uint8_t *pwd = (uint8_t *)strdup(PWD);
     uint32_t pwdlen = strlen((char *)pwd);
@@ -57,5 +57,15 @@ int main(void)
         printf("\nfail\n");
     }
     else printf("ok\n");
+
+
+    size_t encodedlen = argon2_encodedlen(t_cost, m_cost, parallelism, SALTLEN, HASHLEN, Argon2_i);
+
+    char *result = malloc(encodedlen);
+
+    argon2i_hash_encoded(t_cost, m_cost, parallelism, pwd, pwdlen, salt, SALTLEN, HASHLEN, result, encodedlen);
+
+    printf("%s\n", result);
+
     return 0;
 }

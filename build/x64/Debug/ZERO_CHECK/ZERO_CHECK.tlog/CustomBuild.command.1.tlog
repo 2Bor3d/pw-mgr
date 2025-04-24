@@ -1,0 +1,10 @@
+^C:\USERS\DAVIDGLAENZEL\ONEDRIVE - FST\DESKTOP\CODING\PW-MGR\BUILD\CMAKEFILES\A920AF889C4300C764B7A70DBFA4B2AA\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/DAVIDGLAENZEL/OneDrive - FST/Desktop/coding/pw-mgr" "-BC:/Users/DAVIDGLAENZEL/OneDrive - FST/Desktop/coding/pw-mgr/build" --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file "C:/Users/DAVIDGLAENZEL/OneDrive - FST/Desktop/coding/pw-mgr/build/pw-mgr.sln"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
