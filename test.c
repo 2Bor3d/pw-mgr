@@ -1,4 +1,9 @@
 #include "argon2.h"
+#include "ChaCha20.h"
+
+#define CHACHA20_IMPLEMENTATION
+
+#include <stdint.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -8,7 +13,7 @@
 
 int main(void)
 {
-    uint8_t hash[HASHLEN];
+    key256_t hash;
 
     uint8_t salt[SALTLEN];
     memset( salt, 0x00, SALTLEN );
@@ -22,5 +27,24 @@ int main(void)
 
     // high-level API
     argon2i_hash_raw(t_cost, m_cost, parallelism, pwd, pwdlen, salt, SALTLEN, hash, HASHLEN);
-    printf("%s", hash);
+    for( int i=0; i<HASHLEN; ++i ) printf( "%02x", hash[i] ); printf( "\n" );
+
+    nonce96_t nonce = {
+        0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+        0x00, 0x00, 0x00, 0x00,
+    };
+
+    uint32_t count = 0x00000001;
+
+    uint8_t data[] = "sksksk";
+
+    ChaCha20_Ctx ctx;
+    ChaCha20_init(&ctx, hash, nonce, count);
+    ChaCha20_xor(&ctx, data, sizeof(data));
+    printf("%s\n", data);
+
+    ChaCha20_init(&ctx, hash, nonce, count);
+    ChaCha20_xor(&ctx, data, sizeof(data));
+    
+    printf("%s\n", data);
 }

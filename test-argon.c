@@ -48,7 +48,7 @@ int main(void)
         exit(1);
     }
     free(pwd);
-
+    
     for( int i=0; i<HASHLEN; ++i ) printf( "%02x", hash1[i] ); printf( "\n" );
     if (memcmp(hash1, hash2, HASHLEN)) {
         for( int i=0; i<HASHLEN; ++i ) {

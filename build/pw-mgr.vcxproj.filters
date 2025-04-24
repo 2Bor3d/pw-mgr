@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="C:\Users\DAVIDGLAENZEL\OneDrive - FST\Desktop\coding\pw-mgr\test-argon.c">
+    <ClCompile Include="C:\Users\DAVIDGLAENZEL\OneDrive - FST\Desktop\coding\pw-mgr\test.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C:\Users\DAVIDGLAENZEL\OneDrive - FST\Desktop\coding\pw-mgr\argon2\argon2.c">
@@ -24,17 +24,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="C:\Users\DAVIDGLAENZEL\OneDrive - FST\Desktop\coding\pw-mgr\argon2\argon2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
     <CustomBuild Include="C:\Users\DAVIDGLAENZEL\OneDrive - FST\Desktop\coding\pw-mgr\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{C4D273A0-F612-3DC0-9352-8EDBC0FF779C}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files">
       <UniqueIdentifier>{C2938977-231F-3D7A-9B49-25D6837EC393}</UniqueIdentifier>
     </Filter>
