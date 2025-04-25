@@ -5,6 +5,7 @@
 
 int main()
 {
+    /*
 	key256_t key = {
 		0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,
 		0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f,
@@ -16,6 +17,9 @@ int main()
 		0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x4a,
 		0x00, 0x00, 0x00, 0x00,
 	};
+    */
+    uint8_t key[32] = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+    uint8_t nonce[12] = "aaaaaaaaaaaa";
 
 	uint32_t count = 0x00000001;
 
@@ -25,8 +29,15 @@ int main()
 	ChaCha20_Ctx ctx;
 	ChaCha20_init(&ctx, key, nonce, count);
 	ChaCha20_xor(&ctx, data, sizeof(data));
-	ChaCha20_init(&ctx, key, nonce, count);
-	ChaCha20_xor(&ctx, data, sizeof(data));
+
+    printf("%i\n", count);
+    count = 0x00000001;
+
+    
+    ChaCha20_Ctx ctxx;
+	ChaCha20_init(&ctxx, key, nonce, count);
+	ChaCha20_xor(&ctxx, data, sizeof(data));
+    printf("%i\n", count);
 	// The array 'data' is now encrypted (or decrypted if it
 	// was already encrypted)
     printf("%s\n", data);
