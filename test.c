@@ -1,8 +1,8 @@
 #include "argon2.h"
-#include "ChaCha20.h"
 
 #define CHACHA20_IMPLEMENTATION
 
+#include "ChaCha20.h"
 #include <stdint.h>
 #include <stdio.h>
 #include <string.h>
@@ -36,11 +36,12 @@ int main(void)
 
     uint32_t count = 0x00000001;
 
-    uint8_t data[] = "sksksk";
+    uint8_t data[] = {0x61, 0x5e, 0xba, 0x01, 0x33, 0x4e, 0x24};
 
     ChaCha20_Ctx ctx;
     ChaCha20_init(&ctx, hash, nonce, count);
     ChaCha20_xor(&ctx, data, sizeof(data));
+    for( int i=0; i<(sizeof(data)/sizeof(uint8_t)); ++i ) printf( "%02x", data[i] ); printf( "\n" );
     printf("%s\n", data);
 
     ChaCha20_init(&ctx, hash, nonce, count);
