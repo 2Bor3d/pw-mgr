@@ -24,7 +24,7 @@ int main()
 	uint32_t count = 0x00000001;
 
 
-    uint8_t data[] = "hello world";
+    uint8_t data[256] = "hello world";
 
 	ChaCha20_Ctx ctx;
 	ChaCha20_init(&ctx, key, nonce, count);
@@ -32,6 +32,7 @@ int main()
 
     printf("%i\n", count);
     count = 0x00000001;
+    printf("%s\n", data);
 
     
     ChaCha20_Ctx ctxx;

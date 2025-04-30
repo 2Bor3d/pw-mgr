@@ -7,6 +7,8 @@
 int encrypt(uint8_t key[32], uint8_t nonce[12], uint8_t *data)
 {
     printf("%s\n", data);
+    for (int i = 0; i < sizeof(data)/sizeof(uint8_t); i++) {printf("%02x", data[i]);} printf("\n");
+
     uint32_t count = 0x00000001;
     ChaCha20_Ctx ctx;
     ChaCha20_init(&ctx, key, nonce, count);
