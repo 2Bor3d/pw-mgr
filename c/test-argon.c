@@ -1,4 +1,4 @@
-#include "argon2.h"
+#include "argon3.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
