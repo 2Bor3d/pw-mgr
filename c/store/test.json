@@ -1,0 +1,7 @@
+{
+    "info": "string",
+    "same": false,
+    "salt": "sksksks",
+    "nonce": "AAAAAAAAAAAAAAAAAAAAAAAA",
+    "data": "sehr wichtiger string"
+}

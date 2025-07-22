@@ -1,6 +1,6 @@
-^C:\USERS\DAVIDGLAENZEL\ONEDRIVE - FST\DESKTOP\CODING\PW-MGR\BUILD\CMAKEFILES\A920AF889C4300C764B7A70DBFA4B2AA\GENERATE.STAMP.RULE
+^C:\USERS\DAVIDGLAENZEL\ONEDRIVE - FST\DESKTOP\CODING\PW-MGR\C\BUILD\CMAKEFILES\4CCFA32FF6FFCB290AAA7B3C5A501D14\GENERATE.STAMP.RULE
 setlocal
-"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/DAVIDGLAENZEL/OneDrive - FST/Desktop/coding/pw-mgr" "-BC:/Users/DAVIDGLAENZEL/OneDrive - FST/Desktop/coding/pw-mgr/build" --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file "C:/Users/DAVIDGLAENZEL/OneDrive - FST/Desktop/coding/pw-mgr/build/pw-mgr.sln"
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/DAVIDGLAENZEL/OneDrive - FST/Desktop/coding/pw-mgr/c" "-BC:/Users/DAVIDGLAENZEL/OneDrive - FST/Desktop/coding/pw-mgr/c/build" --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file "C:/Users/DAVIDGLAENZEL/OneDrive - FST/Desktop/coding/pw-mgr/c/build/pw-mgr.sln"
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone

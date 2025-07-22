@@ -5,7 +5,7 @@
 void hash(uint8_t *result, char *password, char *salt)
 {
     uint8_t hashlen = 32;
-    uint8_t *pwd;
+    uint8_t pwd[sizeof(password)];
     memcpy(pwd, &password, sizeof(password));
     uint32_t pwdlen = strlen((char *)pwd);
 

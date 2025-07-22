@@ -1,34 +1,46 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="C:\Users\DAVIDGLAENZEL\OneDrive - FST\Desktop\coding\pw-mgr\test.c">
+    <ClCompile Include="C:\Users\DAVIDGLAENZEL\OneDrive - FST\Desktop\coding\pw-mgr\c\main.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\DAVIDGLAENZEL\OneDrive - FST\Desktop\coding\pw-mgr\argon2\argon2.c">
+    <ClCompile Include="C:\Users\DAVIDGLAENZEL\OneDrive - FST\Desktop\coding\pw-mgr\c\hash\hash.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\DAVIDGLAENZEL\OneDrive - FST\Desktop\coding\pw-mgr\argon2\blake2b.c">
+    <ClCompile Include="C:\Users\DAVIDGLAENZEL\OneDrive - FST\Desktop\coding\pw-mgr\c\hash\argon2.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\DAVIDGLAENZEL\OneDrive - FST\Desktop\coding\pw-mgr\argon2\core.c">
+    <ClCompile Include="C:\Users\DAVIDGLAENZEL\OneDrive - FST\Desktop\coding\pw-mgr\c\hash\blake2b.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\DAVIDGLAENZEL\OneDrive - FST\Desktop\coding\pw-mgr\argon2\encoding.c">
+    <ClCompile Include="C:\Users\DAVIDGLAENZEL\OneDrive - FST\Desktop\coding\pw-mgr\c\hash\core.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\DAVIDGLAENZEL\OneDrive - FST\Desktop\coding\pw-mgr\argon2\opt.c">
+    <ClCompile Include="C:\Users\DAVIDGLAENZEL\OneDrive - FST\Desktop\coding\pw-mgr\c\hash\encoding.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\DAVIDGLAENZEL\OneDrive - FST\Desktop\coding\pw-mgr\argon2\thread.c">
+    <ClCompile Include="C:\Users\DAVIDGLAENZEL\OneDrive - FST\Desktop\coding\pw-mgr\c\hash\opt.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\DAVIDGLAENZEL\OneDrive - FST\Desktop\coding\pw-mgr\c\hash\thread.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\DAVIDGLAENZEL\OneDrive - FST\Desktop\coding\pw-mgr\c\crypt\crypt.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\DAVIDGLAENZEL\OneDrive - FST\Desktop\coding\pw-mgr\c\store\store.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\DAVIDGLAENZEL\OneDrive - FST\Desktop\coding\pw-mgr\c\store\parson.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Users\DAVIDGLAENZEL\OneDrive - FST\Desktop\coding\pw-mgr\CMakeLists.txt" />
+    <CustomBuild Include="C:\Users\DAVIDGLAENZEL\OneDrive - FST\Desktop\coding\pw-mgr\c\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{C2938977-231F-3D7A-9B49-25D6837EC393}</UniqueIdentifier>
+      <UniqueIdentifier>{62531B4C-956F-3017-8809-561934EFBBA0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <CustomBuild Include="C:\Users\DAVIDGLAENZEL\OneDrive - FST\Desktop\coding\pw-mgr\build\CMakeFiles\a920af889c4300c764b7a70dbfa4b2aa\generate.stamp.rule">
+    <CustomBuild Include="C:\Users\DAVIDGLAENZEL\OneDrive - FST\Desktop\coding\pw-mgr\c\build\CMakeFiles\4ccfa32ff6ffcb290aaa7b3c5a501d14\generate.stamp.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="CMake Rules">
-      <UniqueIdentifier>{4C142B54-BB2B-31CF-BBF9-143EC5977CA3}</UniqueIdentifier>
+      <UniqueIdentifier>{30BA61B8-7E8B-359C-B00E-9D636490E7D7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
