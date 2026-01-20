@@ -1,0 +1,22 @@
+Compile to executable for testing (tests defined in test.c/main):
+```
+cc test-argon.c hash/argon2.c hash/argon2.h hash/blake2b.c hash/blake2.h hash/blake2-impl.h hash/blamka-round-opt.h hash/core.c hash/core.h hash/encoding.c hash/encoding.h hash/opt.c hash/thread.c hash/thread.h -o test && ./test
+```
+
+Compile .c files to .o (object) files for further use:
+```
+emcc -c <file1>.c <file2>.c ...
+```
+
+Refresh test.o file, ompile to wasm and copy to public_html:
+```
+emcc -c test.c -o test.o && emcc -msse -msse2 -msse3 -msimd128 test.o mylib.o build/argon2.o build/blake2b.o build/core.o build/encoding.o build/opt.o build/thread.o build/chacha_enc.o -o mylib.js -s EXPORTED_FUNCTIONS='["_malloc","_free","_process_string","_reverse_string","_free_string","_generate","_hash", "_hash_encoded","_crypt"]' -s EXPORTED_RUNTIME_METHODS='["ccall","cwrap","UTF8ToString","stringToUTF8"]' -s MODULARIZE=1 -s EXPORT_ES6=1 && cp * ~/public_html/wasm/ -v && cp * ~/public_html/wasm/
+```
+
+
+ToDo:
+- Check block size for ChaCha (32byte?)
+- Check sketchy ChaCha implementaion (by OpenSSL)
+- Check the removed include in crypt/ctype.c
+- Code password manager
+

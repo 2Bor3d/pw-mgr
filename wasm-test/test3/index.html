@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WASM C Library Example</title>
+</head>
+<body>
+    <h1>WebAssembly C Library Demo</h1>
+    <input type="text" id="inputPwd" placeholder="Enter pwd..." value="password">
+    <input type="text" id="inputText" placeholder="Enter pwd..." value="password">
+    <button id="processBtn">Process</button>
+    <button id="reverseBtn">Reverse</button>
+    <h2>Custom:</h2>
+    <button id="generateBtn">generate</button>
+    <button id="hashBtn">hash</button>
+    <button id="cryptBtn">crypt</button>
+    <div id="output"></div>
+    <div id="outputFinal"></div>
+
+    <script type="module">
+        import init from './mylib.js';
+        
+        let wasmModule = null;
+        let password = "";
+        
+        // Initialize WebAssembly
+        async function initializeWasm() {
+            try {
+                wasmModule = await init();
+                console.log('WASM module loaded successfully');
+                
+                // Enable buttons after WASM is loaded
+                document.getElementById('processBtn').disabled = false;
+                document.getElementById('reverseBtn').disabled = false;
+                document.getElementById('generateBtn').disabled = false;
+                
+            } catch (error) {
+                console.error('Failed to load WASM module:', error);
+            }
+        }
+        
+        // Process string using ccall
+        function processWithWasm() {
+            if (!wasmModule) {
+                console.error('WASM module not loaded');
+                return;
+            }
+            
+            const input = document.getElementById('inputText').value;
+            
+            const resultPtr = wasmModule.ccall(
+                'process_string',
+                'number',
+                ['string'],
+                [input]
+            );
+            
+            const result = wasmModule.UTF8ToString(resultPtr);
+            wasmModule.ccall('free_string', null, ['number'], [resultPtr]);
+            
+            document.getElementById('output').innerHTML = 
+                `Result: ${result}`;
+        }
+        
+        // Alternative: Using cwrap
+        function reverseWithWasm() {
+            if (!wasmModule) {
+                console.error('WASM module not loaded');
+                return;
+            }
+            
+            const input = document.getElementById('inputText').value;
+            
+            const reverseString = wasmModule.cwrap(
+                'reverse_string',
+                'number',
+                ['string']
+            );
+            
+            const resultPtr = reverseString(input);
+            const result = wasmModule.UTF8ToString(resultPtr);
+            wasmModule._free(resultPtr);
+            
+            document.getElementById('output').innerHTML = 
+                `Reversed: ${result}`;
+        }
+
+        //And now me:
+        function generateWithWasm() {
+            if (!wasmModule) {
+                console.error('WASM module not loaded');
+                return;
+            }
+            
+            console.log(1)
+            const resultPtr = wasmModule.ccall(
+                'generate',
+                'number',
+                null,
+                null
+            );
+            console.log(2)
+            const result = wasmModule.UTF8ToString(resultPtr);
+            console.log(result)
+            console.log(4)
+            wasmModule.ccall('free_string', null, ['number'], [resultPtr]);
+            console.log(3)
+            document.getElementById('output').innerHTML = 
+                `Result: ${result}`;
+        }
+        function hashWithWasm() {
+            if (!wasmModule) {
+                console.error('WASM module not loaded');
+                return;
+            }
+
+            const input = document.getElementById('inputPwd').value;
+            const salt = "AAAAAAAAAAAAAAAA";
+            
+            console.log(1)
+            const resultPtr = wasmModule.ccall(
+                'hash',
+                'number',
+                ['string', 'string'],
+                [salt, input]
+            );
+            console.log(2)
+            const result = wasmModule.UTF8ToString(resultPtr);
+            console.log(result)
+            console.log(4)
+            //wasmModule.ccall('free_string', null, ['number'], [resultPtr]);
+            console.log(3)
+            document.getElementById('output').innerHTML = 
+                `Result: ${result}`;
+            password = resultPtr;
+        }
+        function cryptWithWasm() {
+            if (!wasmModule) {
+                console.error('WASM module not loaded');
+                return;
+            }
+
+            const input = document.getElementById('inputText').value;
+            
+            console.log(1)
+            const resultPtr = wasmModule.ccall(
+                'crypt',
+                'number',
+                ['string', 'number'],
+                [input, password]
+            );
+            console.log(2)
+            const result = wasmModule.UTF8ToString(resultPtr);
+            console.log(result)
+            console.log(4)
+            //wasmModule.ccall('free_string', null, ['number'], [resultPtr]);
+            console.log(3)
+            document.getElementById('output').innerHTML = 
+                `Result: ${result}`;
+
+            const resultPtrFinal = wasmModule.ccall(
+                'crypt',
+                'number',
+                ['number', 'number'],
+                [resultPtr, password]
+            );
+            console.log(2)
+            const resultFinal = wasmModule.UTF8ToString(resultPtrFinal);
+            console.log(resultFinal)
+            console.log(4)
+            wasmModule.ccall('free_string', null, ['number'], [resultPtrFinal]);
+            document.getElementById('outputFinal').innerHTML = 
+                `Result: ${resultFinal}`;
+        }
+
+
+
+        // Initialize when page loads
+        initializeWasm();
+        
+        // Add event listeners inside the module
+        document.getElementById('processBtn').addEventListener('click', processWithWasm);
+        document.getElementById('reverseBtn').addEventListener('click', reverseWithWasm);
+        document.getElementById('generateBtn').addEventListener('click', generateWithWasm);
+        document.getElementById('hashBtn').addEventListener('click', hashWithWasm);
+        document.getElementById('cryptBtn').addEventListener('click', cryptWithWasm);
+        
+        // Initially disable buttons
+        document.getElementById('processBtn').disabled = true;
+        document.getElementById('reverseBtn').disabled = true;
+        document.getElementById('generateBtn').disabled = true;
+    </script>
+</body>
+</html>
